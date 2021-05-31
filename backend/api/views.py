@@ -7,7 +7,8 @@ from .serializers import TaskSerializer
 def apiCommands(request):
     api_urls = {
         'Commands':'api/',
-        'List':'api/task-list/'
+        'List':'api/task-list/',
+        'Task by id':'api/task/<id>/'
     }
     return Response(api_urls)
 
@@ -16,4 +17,10 @@ def taskList(request):
     tasks = Task.objects.all()
     serializer = TaskSerializer(tasks, many=True)
     print('Adatok:\n',serializer.data)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getTask(request, id):
+    task = Task.objects.get(id=id)
+    serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
