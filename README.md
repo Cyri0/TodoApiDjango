@@ -3,9 +3,9 @@
 Klónozd le/Töltsd le és csomagold ki
 Lépj be a mappájába
 Hozz létre virtuális környezetet
-´´´
+```
 python -m venv .
-´´´
+```
 Telepítsd a Django-t
 ```
 pip install django
