@@ -6,6 +6,15 @@ Hozz létre virtuális környezetet
 ```
 python -m venv .
 ```
+Virtuális környezet aktiválása (Windowson):
+```
+.\Scripts\activate
+```
+Linuxon:
+```
+source /bin/activate
+```
+
 Telepítsd a Django-t
 ```
 pip install django
