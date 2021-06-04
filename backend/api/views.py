@@ -32,3 +32,31 @@ def addTask(request):
     t = Task(title = title)
     t.save()
     return Response({'result':'Created!'})
+
+@api_view(['GET'])
+def changeStatus(request, id):
+    task = Task.objects.get(id=id)
+    task.done = not task.done
+    task.save()
+    result = task.title+" is "+str(task.done)+" now!"
+    return Response({'result':result})
+
+@api_view(['DELETE'])
+def removeTask(request, id):
+    try:
+        task = Task.objects.get(id=id)
+        task.delete()
+        return Response('Success!')
+    except:
+        return Response('Something went wrong...')
+
+@api_view(['POST'])
+def modifyTask(request):
+    id = request.data['id']
+    title = request.data['title']
+
+    task = Task.objects.get(id=id)
+    task.title = title
+    task.save()
+
+    return Response('Success!')
