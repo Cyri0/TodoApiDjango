@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Task
 from .serializers import TaskSerializer
+import json
 
 @api_view(['GET'])
 def apiCommands(request):
@@ -24,3 +25,10 @@ def getTask(request, id):
     task = Task.objects.get(id=id)
     serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def addTask(request):
+    title = request.data['title']
+    t = Task(title = title)
+    t.save()
+    return Response({'result':'Created!'})
